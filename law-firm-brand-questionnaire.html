@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Discovery Questionnaire — Law Firm Rebrand</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0e;
+    --paper: #f5f1eb;
+    --gold: #b89a5e;
+    --gold-light: #d4b87a;
+    --rule: #d1c9bc;
+    --muted: #7a7268;
+    --white: #ffffff;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 340px; height: 340px;
+    border: 1px solid rgba(184,154,94,0.2);
+    border-radius: 50%;
+    transform: translate(40%, -40%);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 60px;
+    width: 200px; height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    max-width: 580px;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .cover-meta {
+    font-size: 13px;
+    color: rgba(245,241,235,0.5);
+    margin-top: 40px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── LAYOUT ── */
+  .doc-body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* ── INTRO NOTE ── */
+  .intro-note {
+    border-left: 2px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 64px;
+    background: rgba(184,154,94,0.06);
+  }
+
+  .intro-note p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .intro-note strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 72px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 28px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  /* ── QUESTION BLOCK ── */
+  .q-block {
+    margin-bottom: 36px;
+  }
+
+  .q-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .q-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .q-hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  textarea:focus, input[type="text"]:focus {
+    border-color: var(--gold);
+  }
+
+  textarea { min-height: 100px; }
+  textarea.tall { min-height: 140px; }
+
+  /* ── CHOICE GRIDS ── */
+  .choice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .choice-grid label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .choice-grid label:hover {
+    border-color: var(--gold);
+    background: rgba(184,154,94,0.05);
+  }
+
+  .choice-grid input[type="checkbox"],
+  .choice-grid input[type="radio"] {
+    accent-color: var(--gold);
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ── SCALE ── */
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 10px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .scale-row label {
+    flex: 1;
+    text-align: center;
+    padding: 12px 4px;
+    cursor: pointer;
+    font-size: 13px;
+    border-right: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+
+  .scale-row label:last-child { border-right: none; }
+  .scale-row label:hover { background: rgba(184,154,94,0.08); }
+
+  .scale-row input[type="radio"] {
+    display: none;
+  }
+
+  .scale-row input[type="radio"]:checked + span {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── PAIR SCALE ── */
+  .pair-scale {
+    margin-top: 10px;
+  }
+
+  .pair-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 140px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .pair-left { font-size: 13px; color: var(--muted); text-align: right; }
+  .pair-right { font-size: 13px; color: var(--muted); }
+
+  .pair-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .pair-dots input[type="radio"] { accent-color: var(--gold); width: 15px; height: 15px; cursor: pointer; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule), transparent);
+    margin: 56px 0;
+  }
+
+  /* ── SUBMIT ── */
+  .submit-section {
+    text-align: center;
+    padding: 48px 0 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 16px;
+  }
+
+  .submit-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-submit {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px 48px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-submit:hover { background: var(--gold); }
+
+  /* ── PRINT ── */
+  @media print {
+    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    textarea, input { border: 1px solid #ccc !important; }
+  }
+
+  @media (max-width: 600px) {
+    .cover { padding: 52px 28px 52px; }
+    .doc-body { padding: 40px 20px 80px; }
+    .pair-row { grid-template-columns: 80px 1fr 80px; gap: 6px; }
+    .pair-left, .pair-right { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Brand Discovery Document</div>
+  <h1>Tell Us Who<br>You <em>Really</em> Are.</h1>
+  <p style="color:rgba(245,241,235,0.6); font-size:14px; max-width:480px; line-height:1.75;">
+    This questionnaire is the foundation of your brand refresh. Your answers will shape the story we tell, the identity we build, and the perception we engineer — in boardrooms, courtrooms, and beyond.
+  </p>
+  <div class="cover-meta">Law Firm Brand Refresh &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Strategy & Creative Discovery</div>
+</div>
+
+<!-- BODY -->
+<div class="doc-body">
+
+  <!-- INTRO NOTE -->
+  <div class="intro-note">
+    <p><strong>How to approach this:</strong> There are no wrong answers here. Be direct and honest — the more specific you are, the sharper the work we produce for you. This document covers six areas: your firm's identity, reputation, story, visual direction, name, and aspirations. Set aside 30–45 minutes to complete it fully.</p>
+  </div>
+
+
+  <!-- SECTION 1: FIRM IDENTITY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Firm Identity &amp; Foundation</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q1</div>
+      <div class="q-text">What is the full legal name of your firm, and how long have you been in operation?</div>
+      <input type="text" placeholder="Firm name / Year founded">
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q2</div>
+      <div class="q-text">What areas of law do you practice, and which is your primary specialty?</div>
+      <div class="q-hint">List all practice areas, then indicate which one defines you most.</div>
+      <textarea class="tall" placeholder="e.g. Corporate law, Dispute Resolution, Real Estate — our core is Corporate law…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q3</div>
+      <div class="q-text">Who is your ideal client? Describe them as specifically as possible.</div>
+      <div class="q-hint">Think beyond demographics — what are they worried about? What do they need from you?</div>
+      <textarea placeholder="e.g. Mid-to-large corporates navigating regulatory risk, who need clarity and speed…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q4</div>
+      <div class="q-text">In one sentence, what does your firm do that no other firm does — or does better?</div>
+      <textarea style="min-height:70px;" placeholder="Your honest answer, not your brochure language."></textarea>
+    </div>
+  </div>
+
+
+  <!-- SECTION 2: REPUTATION & CURRENT PERCEPTION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Reputation &amp; Current Perception</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q5</div>
+      <div class="q-text">What are you currently known for in the market? What do clients say about you most often?</div>
+      <textarea placeholder="Think of compliments, referrals, repeat business — what's the consistent thread?"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q6</div>
+      <div class="q-text">If a potential client Googled your firm today and formed an impression, what do you think that impression would be?</div>
+      <div class="q-hint">Be honest — this gap between reality and perception is often where rebrand work begins.</div>
+      <textarea placeholder="What they'd see, feel, assume…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q7</div>
+      <div class="q-text">What misconception do people most commonly have about your firm — and what's the truth?</div>
+      <textarea placeholder="e.g. People think we only work with multinationals. In reality, we've built some of the most ambitious SME structures in the region."></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q8</div>
+      <div class="q-text">How would you describe your firm's current brand personality?</div>
+      <div class="choice-grid">
+        <label><input type="checkbox" name="personality" value="formal"> <span>Formal &amp; traditional</span></label>
+        <label><input type="checkbox" name="personality" value="approachable"> <span>Approachable &amp; accessible</span></label>
+        <label><input type="checkbox" name="personality" value="aggressive"> <span>Aggressive &amp; assertive</span></label>
+        <label><input type="checkbox" name="personality" value="strategic"> <span>Strategic &amp; methodical</span></label>
+        <label><input type="checkbox" name="personality" value="corporate"> <span>Corporate &amp; institutional</span></label>
+        <label><input type="checkbox" name="personality" value="boutique"> <span>Boutique &amp; specialised</span></label>
+        <label><input type="checkbox" name="personality" value="modern"> <span>Modern &amp; progressive</span></label>
+        <label><input type="checkbox" name="personality" value="unclear"> <span>Unclear / undefined</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q9</div>
+      <div class="q-text">Who are your top 2–3 competitors, and how do you see them positioned in the market?</div>
+      <textarea placeholder="Name them. What do they do well? Where do they fall short? Where do you overlap?"></textarea>
+    </div>
+  </div>
+
+
+  <!-- SECTION 3: BRAND STORY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">The Story You Want to Tell</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q10</div>
+      <div class="q-text">Why was this firm founded — and does that origin still drive what you do today?</div>
+      <div class="q-hint">The founding story is often the most authentic thing a brand owns. Don't skip this.</div>
+      <textarea class="tall" placeholder="Who started it, why, what problem were they solving, what did they believe the legal profession should look like…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q11</div>
+      <div class="q-text">If your firm were a person walking into a room, how would they be described?</div>
+      <div class="q-hint">Think presence, energy, the way they speak. What do they make people feel?</div>
+      <textarea placeholder="e.g. The person in the room who doesn't need to say much but when they do, everyone listens…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q12</div>
+      <div class="q-text">What do you want to be remembered for, 20 years from now?</div>
+      <textarea placeholder="Think legacy, not just practice areas. What change did you bring to the legal landscape?"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q13</div>
+      <div class="q-text">What values are non-negotiable for your firm — the ones that you would never compromise even under commercial pressure?</div>
+      <textarea placeholder="e.g. Integrity, deep client relationships, never cutting corners on research…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q14</div>
+      <div class="q-text">Complete this sentence: "We exist so that our clients never have to feel ____."</div>
+      <input type="text" placeholder="vulnerable / confused / alone / outmanoeuvred…">
+    </div>
+  </div>
+
+
+  <!-- SECTION 4: INSPIRATION & ADMIRATION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Brands &amp; Firms You Admire</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q15</div>
+      <div class="q-text">Name 2–3 law firms — local or international — whose brand or reputation you genuinely admire. What specifically do you admire about each?</div>
+      <div class="q-hint">It could be their positioning, visual identity, how they communicate, or how they're perceived by clients.</div>
+      <textarea class="tall" placeholder="Firm 1: ______ — What I admire: ______&#10;Firm 2: ______ — What I admire: ______&#10;Firm 3: ______ — What I admire: ______"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q16</div>
+      <div class="q-text">Name 2–3 brands outside of law — any industry — whose identity, aesthetics, or reputation you find compelling.</div>
+      <div class="q-hint">Think about how they feel, not just what they look like. What emotion do they evoke?</div>
+      <textarea placeholder="e.g. Apple — quiet confidence, effortless precision. McKinsey — institutional authority without arrogance…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q17</div>
+      <div class="q-text">Are there any brands or firms — in or out of law — whose identity you actively do NOT want to resemble? Why?</div>
+      <textarea placeholder="This is just as useful as knowing what you admire."></textarea>
+    </div>
+  </div>
+
+
+  <!-- SECTION 5: VISUAL IDENTITY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Visual Identity &amp; Logo Direction</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q18</div>
+      <div class="q-text">How would you describe the visual direction you want to move toward?</div>
+      <div class="choice-grid">
+        <label><input type="radio" name="visual_dir" value="classic"> <span>Classic &amp; timeless</span></label>
+        <label><input type="radio" name="visual_dir" value="modern"> <span>Modern &amp; minimal</span></label>
+        <label><input type="radio" name="visual_dir" value="bold"> <span>Bold &amp; commanding</span></label>
+        <label><input type="radio" name="visual_dir" value="warm"> <span>Warm &amp; human</span></label>
+        <label><input type="radio" name="visual_dir" value="luxury"> <span>Luxury &amp; refined</span></label>
+        <label><input type="radio" name="visual_dir" value="progressive"> <span>Progressive &amp; forward-thinking</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q19</div>
+      <div class="q-text">For your logo, what type of mark are you leaning toward?</div>
+      <div class="choice-grid">
+        <label><input type="checkbox" name="logo_type"> <span>Wordmark (name only)</span></label>
+        <label><input type="checkbox" name="logo_type"> <span>Lettermark / Monogram</span></label>
+        <label><input type="checkbox" name="logo_type"> <span>Icon + wordmark</span></label>
+        <label><input type="checkbox" name="logo_type"> <span>Abstract symbol</span></label>
+        <label><input type="checkbox" name="logo_type"> <span>Emblem / Crest</span></label>
+        <label><input type="checkbox" name="logo_type"> <span>Open to direction</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q20</div>
+      <div class="q-text">Are there any symbols, imagery, or visual motifs that feel meaningful to the firm's identity or history?</div>
+      <div class="q-hint">Scales of justice, architectural references, initials, geographical symbols — anything you feel connected to, or want to avoid.</div>
+      <textarea placeholder="Include things you like AND things you want to avoid."></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q21</div>
+      <div class="q-text">What colours are you drawn to for the new brand, and why? Do any colours feel completely wrong?</div>
+      <textarea placeholder="e.g. Deep navy feels like trust. We want to move away from the generic legal gold/black combination…"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q22</div>
+      <div class="q-text">Rate where you want the brand to sit on each of these scales.</div>
+      <div class="pair-scale">
+
+        <div class="pair-row">
+          <div class="pair-left">Traditional</div>
+          <div class="pair-dots">
+            <input type="radio" name="s1" value="1"><input type="radio" name="s1" value="2">
+            <input type="radio" name="s1" value="3"><input type="radio" name="s1" value="4">
+            <input type="radio" name="s1" value="5">
+          </div>
+          <div class="pair-right">Contemporary</div>
+        </div>
+
+        <div class="pair-row">
+          <div class="pair-left">Corporate &amp; formal</div>
+          <div class="pair-dots">
+            <input type="radio" name="s2" value="1"><input type="radio" name="s2" value="2">
+            <input type="radio" name="s2" value="3"><input type="radio" name="s2" value="4">
+            <input type="radio" name="s2" value="5">
+          </div>
+          <div class="pair-right">Human &amp; warm</div>
+        </div>
+
+        <div class="pair-row">
+          <div class="pair-left">Quiet &amp; understated</div>
+          <div class="pair-dots">
+            <input type="radio" name="s3" value="1"><input type="radio" name="s3" value="2">
+            <input type="radio" name="s3" value="3"><input type="radio" name="s3" value="4">
+            <input type="radio" name="s3" value="5">
+          </div>
+          <div class="pair-right">Bold &amp; assertive</div>
+        </div>
+
+        <div class="pair-row">
+          <div class="pair-left">Local &amp; rooted</div>
+          <div class="pair-dots">
+            <input type="radio" name="s4" value="1"><input type="radio" name="s4" value="2">
+            <input type="radio" name="s4" value="3"><input type="radio" name="s4" value="4">
+            <input type="radio" name="s4" value="5">
+          </div>
+          <div class="pair-right">International &amp; global</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q23</div>
+      <div class="q-text">Where will this brand show up most? Tick everything that applies.</div>
+      <div class="choice-grid">
+        <label><input type="checkbox"> <span>Website</span></label>
+        <label><input type="checkbox"> <span>Business cards &amp; stationery</span></label>
+        <label><input type="checkbox"> <span>Office signage</span></label>
+        <label><input type="checkbox"> <span>LinkedIn &amp; social media</span></label>
+        <label><input type="checkbox"> <span>Court documents &amp; filings</span></label>
+        <label><input type="checkbox"> <span>Pitch decks &amp; proposals</span></label>
+        <label><input type="checkbox"> <span>Events &amp; sponsorships</span></label>
+        <label><input type="checkbox"> <span>Merchandise &amp; branded items</span></label>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SECTION 6: NAME -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">The Name</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q24</div>
+      <div class="q-text">Is the firm name changing as part of this rebrand?</div>
+      <div class="choice-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <label><input type="radio" name="name_change" value="yes"> <span>Yes, we want a new name</span></label>
+        <label><input type="radio" name="name_change" value="maybe"> <span>We're open to it</span></label>
+        <label><input type="radio" name="name_change" value="no"> <span>No, keeping current name</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q25</div>
+      <div class="q-text">If a name change is on the table, what kind of name are you considering?</div>
+      <div class="choice-grid">
+        <label><input type="checkbox" name="name_type"> <span>Partner surnames (traditional)</span></label>
+        <label><input type="checkbox" name="name_type"> <span>Single strong word</span></label>
+        <label><input type="checkbox" name="name_type"> <span>Abstract / coined word</span></label>
+        <label><input type="checkbox" name="name_type"> <span>Initials / acronym</span></label>
+        <label><input type="checkbox" name="name_type"> <span>Descriptive / positioning name</span></label>
+        <label><input type="checkbox" name="name_type"> <span>No preference</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q26</div>
+      <div class="q-text">If you have any name ideas or directions you're already exploring, list them here — along with what you like about each.</div>
+      <textarea placeholder="Even rough ideas or words you're drawn to are useful at this stage."></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q27</div>
+      <div class="q-text">Are there any naming conventions, words, or structures that are off the table — for legal, cultural, or personal reasons?</div>
+      <textarea style="min-height:70px;" placeholder="e.g. No Latin, no initials, must work in French and English…"></textarea>
+    </div>
+  </div>
+
+
+  <!-- SECTION 7: GOALS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Goals &amp; Success Criteria</span>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q28</div>
+      <div class="q-text">What is the primary reason you're doing this rebrand right now? What has changed — or needs to change?</div>
+      <div class="choice-grid">
+        <label><input type="checkbox"> <span>Attracting a new client segment</span></label>
+        <label><input type="checkbox"> <span>The firm has grown or restructured</span></label>
+        <label><input type="checkbox"> <span>Current identity feels outdated</span></label>
+        <label><input type="checkbox"> <span>Increasing competition</span></label>
+        <label><input type="checkbox"> <span>Entering a new market</span></label>
+        <label><input type="checkbox"> <span>Repositioning the practice area focus</span></label>
+        <label><input type="checkbox"> <span>Talent acquisition / employer brand</span></label>
+        <label><input type="checkbox"> <span>Partner buy-in / internal culture</span></label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q29</div>
+      <div class="q-text">When this rebrand is complete and successful, what will have changed? How will you know it worked?</div>
+      <textarea placeholder="Think about client conversations, referrals, perception, talent, media coverage — what shifts?"></textarea>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Q30</div>
+      <div class="q-text">Is there anything else — context, concerns, non-negotiables, or hopes — that you want us to know before we begin?</div>
+      <textarea class="tall" placeholder="This is your space. Say anything."></textarea>
+    </div>
+  </div>
+
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <p class="submit-note">Your responses are confidential and will only be used to shape the creative and strategic direction of your brand refresh.</p>
+    <button class="btn-submit" onclick="window.print()">Save / Print Response</button>
+  </div>
+
+</div>
+
+</body>
+</html>
